@@ -9,16 +9,16 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements IBMCloudToneAnalyzerListener {
+public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/ {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        IBMCloudService.INSTANCE.analyzeText("My sister is a bitch. I hope she dies someday!", this);
+        //IBMCloudService.INSTANCE.analyzeText("My sister is a nice woman. I hope she lives someday!", this);
     }
 
-
+    /*
     @Override
     public void onToneAnalyzerSuccess(List<ToneScore> scores) {
         String detectedTones = "";
@@ -47,5 +47,5 @@ public class MainActivity extends AppCompatActivity implements IBMCloudToneAnaly
     @Override
     public Context getContext() {
         return this;
-    }
+    }*/
 }
