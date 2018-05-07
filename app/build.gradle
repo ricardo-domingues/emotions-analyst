@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.uis.facebook_emotions"
-        minSdkVersion 23
+        minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -22,12 +22,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    compile 'com.ibm.watson.developer_cloud:java-sdk:3.7.2'
-    testImplementation 'junit:junit:4.12'
-    compile 'com.microsoft.projectoxford:face:1.4.1'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.facebook.android:facebook-login:[4,5)'
-    implementation 'com.twitter.sdk.android:twitter:3.1.1'
+    implementation 'com.ibm.watson.developer_cloud:java-sdk:3.7.2'
+    implementation ('com.twitter.sdk.android:twitter:3.1.1'){
+        exclude module: 'support-v4'
+    }
 
 }

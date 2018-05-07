@@ -1,3 +1,4 @@
+/*
 package com.example.uis.facebook_emotions;
 
 import android.os.AsyncTask;
@@ -15,9 +16,15 @@ public class DetectEmotion extends AsyncTask<String, String, Face[]> {
 
             // Start detection.
             return faceClient.detect(
-                    strings[0],  /* Input stream of image to detect */
-                    false,       /* Whether to return face ID */
-                    false,       /* Whether to return face landmarks */
+                    strings[0],  */
+/* Input stream of image to detect *//*
+
+                    false,       */
+/* Whether to return face ID *//*
+
+                    false,       */
+/* Whether to return face landmarks *//*
+
                     new FaceServiceClient.FaceAttributeType[] {
                             FaceServiceClient.FaceAttributeType.Emotion,
 
@@ -29,3 +36,4 @@ public class DetectEmotion extends AsyncTask<String, String, Face[]> {
     }
 }
 
+*/
