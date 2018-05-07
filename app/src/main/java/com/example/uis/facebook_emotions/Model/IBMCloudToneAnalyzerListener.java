@@ -1,4 +1,4 @@
-package com.example.uis.facebook_emotions;
+package com.example.uis.facebook_emotions.Model;
 
 import android.content.Context;
 
