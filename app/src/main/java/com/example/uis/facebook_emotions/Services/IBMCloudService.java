@@ -1,7 +1,9 @@
-package com.example.uis.facebook_emotions;
+package com.example.uis.facebook_emotions.Services;
 
 import android.content.Context;
 
+import com.example.uis.facebook_emotions.Model.IBMCloudToneAnalyzerListener;
+import com.example.uis.facebook_emotions.R;
 import com.ibm.watson.developer_cloud.http.ServiceCallback;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone;

@@ -2,4 +2,5 @@
     <string name="app_name">facebook-emotions</string>
     <string name="facebook_app_id">238438110041178</string>
     <string name="fb_login_protocol_scheme">fb238438110041178</string>
+    <string name="google_places_api_key">AIzaSyBe8q55oDql4Iv3bKX_7I6s8RW7gRmA878</string>
 </resources>

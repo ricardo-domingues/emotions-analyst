@@ -1,30 +1,23 @@
 package com.example.uis.facebook_emotions;
 
 import android.content.Intent;
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
 import android.widget.Toast;
-import android.widget.Toast;
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-
 import java.util.Arrays;
-// import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 
-public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/{
+public class MainActivity extends AppCompatActivity{
 
 
     private static final String EMAIL = "email";
     private CallbackManager callbackManager;
     private LoginButton loginButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +47,6 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
                 // App code
             }
         });
-        //IBMCloudService.INSTANCE.analyzeText("My sister is a nice woman. I hope she lives someday!", this);
     }
 
     @Override
@@ -63,36 +55,9 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void onClickPlacesSpike(View view) {
 
-
-    /*
-    @Override
-    public void onToneAnalyzerSuccess(List<ToneScore> scores) {
-        String detectedTones = "";
-        for(ToneScore score:scores) {
-            if(score.getScore() > 0.5f) {
-                detectedTones += score.getName() + " ";
-            }
-        }
-        final String toastMessage =
-                "The following emotions were detected:\n\n"
-                        + detectedTones.toUpperCase();
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(), toastMessage, Toast.LENGTH_LONG).show();
-            }
-        });
+        Intent i = new Intent(this, PlacesActivity.class);
+        startActivity(i);
     }
-
-    @Override
-    public void onToneAnalyzerError(Exception e) {
-        e.printStackTrace();
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
-    }*/
 }
