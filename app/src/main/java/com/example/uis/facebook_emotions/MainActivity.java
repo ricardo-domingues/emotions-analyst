@@ -16,17 +16,15 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import java.util.Arrays;
+// import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 
-public class MainActivity extends AppCompatActivity {
-import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
+public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/{
+
 
     private static final String EMAIL = "email";
     private CallbackManager callbackManager;
     private LoginButton loginButton;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/ {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +62,6 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-
-
-
 
 
 
