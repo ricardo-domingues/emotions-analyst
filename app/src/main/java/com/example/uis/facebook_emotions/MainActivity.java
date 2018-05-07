@@ -6,37 +6,143 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.core.services.StatusesService;
+import com.twitter.sdk.android.tweetui.TimelineResult;
+import com.twitter.sdk.android.tweetui.TweetUtils;
+import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.sql.StatementEvent;
+
+import retrofit2.Call;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String EMAIL = "email";
-    private CallbackManager callbackManager;
-    private LoginButton loginButton;
+  /*  private static final String EMAIL = "email";
+    private CallbackManager callbackManager;*/
+
+    private TwitterLoginButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Twitter.initialize(this);
+
+
         loginButton = findViewById(R.id.login_button);
+        loginButton.setEnabled(true);
+        loginButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                // Do something with result, which provides a TwitterSession for making API call
+
+
+
+                UserTimeline userTimeline = new UserTimeline.Builder().maxItemsPerRequest(10).build();
+                System.out.println("SOMETHING");
+
+                userTimeline.next(System.currentTimeMillis(), new Callback<TimelineResult<Tweet>>() {
+                    @Override
+                    public void success(Result<TimelineResult<Tweet>> result) {
+                        List<Tweet> tweets = result.data.items;
+                        for (Tweet t: tweets){
+                            System.out.println(t.text);
+                            t.entities.media.get(0);
+
+                        }
+                    }
+
+                    @Override
+                    public void failure(TwitterException exception) {
+
+                    }
+                });
+
+
+
+
+
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                // Do something on failure
+            }
+        });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Pass the activity result to the login button.
+        loginButton.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+        /*loginButton = findViewById(R.id.login_button);
+
+        permissions = new LinkedList<>();
+
+        permissions.add(EMAIL);
+        permissions.add("user_posts");
+        permissions.add("user_photos");
 
         callbackManager = CallbackManager.Factory.create();
+        loginButton.setReadPermissions(permissions);
 
-        loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList(EMAIL));
+        currentProfile = Profile.getCurrentProfile();
+
+        *//* make the API call *//*
+        new GraphRequest(
+                AccessToken.getCurrentAccessToken(),
+                "/page-id/feed",
+                null,
+                HttpMethod.GET,
+                new GraphRequest.Callback() {
+                    public void onCompleted(GraphResponse response) {
+                        System.out.println("RESPONSE");
+                        System.out.println(response.toString());
+                    }
+                }
+        ).executeAsync();
+
+
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(getApplicationContext(), "Login With Facebook successful", Toast.LENGTH_LONG).show();
+                LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("public_profile"));
+
             }
 
             @Override
@@ -48,15 +154,15 @@ public class MainActivity extends AppCompatActivity {
             public void onError(FacebookException exception) {
                 // App code
             }
-        });
-    }
+        });*/
 
-    @Override
+
+   /* @Override
     protected void onActivityResult( int requestCode, int resultCode, Intent data){
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+*/
 
 
 

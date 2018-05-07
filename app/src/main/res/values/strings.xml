@@ -2,4 +2,6 @@
     <string name="app_name">facebook-emotions</string>
     <string name="facebook_app_id">238438110041178</string>
     <string name="fb_login_protocol_scheme">fb238438110041178</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">IkceBrzlZbnXMLRR1VXinGFhC</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">dL1yHeK9hzWmQR0seH6FJ4gr3pATBD8Ei2iWyMeSYcVYs7skMG</string>
 </resources>
