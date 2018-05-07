@@ -1,9 +1,12 @@
 package com.example.uis.facebook_emotions;
 
 import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -17,6 +20,7 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.microsoft.projectoxford.face.contract.Face;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -42,8 +46,9 @@ import retrofit2.Call;
 
 public class MainActivity extends AppCompatActivity {
 
-  /*  private static final String EMAIL = "email";
-    private CallbackManager callbackManager;*/
+    private static final String EMAIL = "email";
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
 
     private TwitterLoginButton loginButton;
 
@@ -120,22 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentProfile = Profile.getCurrentProfile();
 
-        *//* make the API call *//*
-        new GraphRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/page-id/feed",
-                null,
-                HttpMethod.GET,
-                new GraphRequest.Callback() {
-                    public void onCompleted(GraphResponse response) {
-                        System.out.println("RESPONSE");
-                        System.out.println(response.toString());
-                    }
-                }
-        ).executeAsync();
-
-
-
+        emotionButton = findViewById(R.id.FetchEmotionBtn);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -154,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
             public void onError(FacebookException exception) {
                 // App code
             }
-        });*/
+        });
+    }
 
 
    /* @Override
@@ -166,6 +157,26 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    /*
+    @Override
+    public void onToneAnalyzerSuccess(List<ToneScore> scores) {
+        String detectedTones = "";
+        for(ToneScore score:scores) {
+            if(score.getScore() > 0.5f) {
+                detectedTones += score.getName() + " ";
+            }
+        }
+        final String toastMessage =
+                "The following emotions were detected:\n\n"
+                        + detectedTones.toUpperCase();
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), toastMessage, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
 }
