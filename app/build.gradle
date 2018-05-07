@@ -24,6 +24,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     compile 'com.ibm.watson.developer_cloud:java-sdk:3.7.2'
     testImplementation 'junit:junit:4.12'
+    compile 'com.microsoft.projectoxford:face:1.4.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.facebook.android:facebook-login:[4,5)'

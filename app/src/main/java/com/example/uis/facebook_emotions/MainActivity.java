@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.microsoft.projectoxford.face.contract.Face;
 
 import java.util.Arrays;
 // import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
     private static final String EMAIL = "email";
     private CallbackManager callbackManager;
     private LoginButton loginButton;
+    private Button emotionButton;
 
 
     @Override
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
 
         loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList(EMAIL));
+
+        emotionButton = findViewById(R.id.FetchEmotionBtn);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -54,7 +59,15 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
                 // App code
             }
         });
+
         //IBMCloudService.INSTANCE.analyzeText("My sister is a nice woman. I hope she lives someday!", this);
+
+        emotionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 new DetectEmotion().execute("https://i.pinimg.com/originals/b8/b3/8f/b8b38fff95814226e1411868bc992cdf.jpg");
+            }
+        });
     }
 
     @Override
