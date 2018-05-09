@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">facebook-emotions</string>
+    <string name="app_name">Emotions Analyst</string>
     <string name="facebook_app_id">238438110041178</string>
     <string name="fb_login_protocol_scheme">fb238438110041178</string>
     <string name="com.twitter.sdk.android.CONSUMER_KEY">IkceBrzlZbnXMLRR1VXinGFhC</string>

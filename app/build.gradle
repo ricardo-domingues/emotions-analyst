@@ -25,7 +25,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.ibm.watson.developer_cloud:java-sdk:3.7.2'
-    implementation ('com.twitter.sdk.android:twitter:3.1.1'){
+    implementation('com.twitter.sdk.android:twitter:3.1.1') {
         exclude module: 'support-v4'
     }
 }

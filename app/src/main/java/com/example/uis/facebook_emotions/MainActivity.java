@@ -8,6 +8,8 @@ import android.view.View;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -19,26 +21,30 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/ {
 
-    private TwitterLoginButton loginButton;
-
-    private static final String EMAIL = "email";
+    private TwitterLoginButton twitterLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         Twitter.initialize(this);
+        setContentView(R.layout.activity_main);
+        twitterLoginButton = findViewById(R.id.loginButton);
 
 
-        loginButton = findViewById(R.id.login_button);
-        loginButton.setEnabled(true);
-        loginButton.setCallback(new Callback<TwitterSession>() {
+        twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
-                // Do something with result, which provides a TwitterSession for making API call
+                //Do something with result, which provides a TwitterSession for making API call
 
+                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+                TwitterAuthToken authToken = session.getAuthToken();
+                String token = authToken.token;
+                String secret = authToken.secret;
 
+                //Calling login method and passing twitter session
+                login(session);
+
+                /*
                 UserTimeline userTimeline = new UserTimeline.Builder().maxItemsPerRequest(10).build();
                 System.out.println("SOMETHING");
 
@@ -49,29 +55,34 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
                         for (Tweet t : tweets) {
                             System.out.println(t.text);
                             t.entities.media.get(0);
-                        }
-                    }
 
-                    @Override
-                    public void failure(TwitterException exception) {
-
-                    }
-                });
+                        }*/
             }
+
 
             @Override
             public void failure(TwitterException exception) {
+
 
             }
         });
     }
 
+
+    public void login(TwitterSession twitterSession) {
+        Intent i = new Intent(MainActivity.this, HelloActivity.class);
+        i.putExtra("USERNAME", twitterSession.getUserName());
+        startActivity(i);
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Pass the activity result to the login button.
-        loginButton.onActivityResult(requestCode, resultCode, data);
+        twitterLoginButton.onActivityResult(requestCode, resultCode, data);
+    }
+
     public void onClickPlacesSpike(View view) {
         Intent i = new Intent(this, PlacesActivity.class);
         startActivity(i);
