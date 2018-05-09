@@ -3,6 +3,8 @@ package com.example.uis.facebook_emotions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -15,9 +17,11 @@ import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/ {
 
     private TwitterLoginButton loginButton;
+
+    private static final String EMAIL = "email";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API call
+
+
                 UserTimeline userTimeline = new UserTimeline.Builder().maxItemsPerRequest(10).build();
                 System.out.println("SOMETHING");
 
@@ -43,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                         for (Tweet t : tweets) {
                             System.out.println(t.text);
                             t.entities.media.get(0);
-
                         }
                     }
 
@@ -52,13 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
 
             @Override
             public void failure(TwitterException exception) {
-                // Do something on failure
+
             }
         });
     }
@@ -69,5 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Pass the activity result to the login button.
         loginButton.onActivityResult(requestCode, resultCode, data);
+    public void onClickPlacesSpike(View view) {
+        Intent i = new Intent(this, PlacesActivity.class);
+        startActivity(i);
     }
+
 }

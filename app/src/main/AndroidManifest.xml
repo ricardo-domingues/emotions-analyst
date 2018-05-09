@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uis.facebook_emotions">
 
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDOCrKk3k5ANB-z6CHwIroRgc3NBDvEOHE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,8 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PlacesActivity"></activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
