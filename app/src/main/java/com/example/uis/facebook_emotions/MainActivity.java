@@ -1,6 +1,11 @@
 package com.example.uis.facebook_emotions;
 
+
 import android.content.Intent;
+import android.drm.DrmStore;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +34,10 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         Twitter.initialize(this);
         setContentView(R.layout.activity_main);
         twitterLoginButton = findViewById(R.id.loginButton);
+
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d4e0f8")));
+
 
 
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
