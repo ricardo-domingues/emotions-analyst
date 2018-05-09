@@ -1,6 +1,7 @@
 package com.example.uis.facebook_emotions;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
@@ -65,7 +66,8 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
             @Override
             public void run() {
                 progressBarAnalyze.setVisibility(View.GONE);
-                
+                Intent intent = new Intent(HelloActivity.this, ResultsAndSuggestionsActivity.class);
+                startActivity(intent);
             }
         });
     }

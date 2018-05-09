@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlacesActivity" />
-        <activity android:name=".HelloActivity"></activity>
+        <activity android:name=".HelloActivity" />
+        <activity android:name=".ResultsAndSuggestionsActivity"></activity>
     </application>
 
 </manifest>
