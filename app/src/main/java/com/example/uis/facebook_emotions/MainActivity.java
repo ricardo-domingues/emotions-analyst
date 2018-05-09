@@ -2,7 +2,6 @@ package com.example.uis.facebook_emotions;
 
 
 import android.content.Intent;
-import android.drm.DrmStore;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
@@ -18,11 +17,7 @@ import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.tweetui.TimelineResult;
-import com.twitter.sdk.android.tweetui.UserTimeline;
 
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAnalyzerListener*/ {
 
@@ -44,28 +39,13 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
             @Override
             public void success(Result<TwitterSession> result) {
                 //Do something with result, which provides a TwitterSession for making API call
-
-                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
-                TwitterAuthToken authToken = session.getAuthToken();
-                String token = authToken.token;
-                String secret = authToken.secret;
+                User.INSTANCE.setTwitterSession(TwitterCore.getInstance().getSessionManager().getActiveSession());
+                User.INSTANCE.setUsername(User.INSTANCE.getTwitterSession().getUserName());
 
                 //Calling login method and passing twitter session
-                login(session);
+                login(User.INSTANCE.getTwitterSession());
 
-                /*
-                UserTimeline userTimeline = new UserTimeline.Builder().maxItemsPerRequest(10).build();
-                System.out.println("SOMETHING");
 
-                userTimeline.next(System.currentTimeMillis(), new Callback<TimelineResult<Tweet>>() {
-                    @Override
-                    public void success(Result<TimelineResult<Tweet>> result) {
-                        List<Tweet> tweets = result.data.items;
-                        for (Tweet t : tweets) {
-                            System.out.println(t.text);
-                            t.entities.media.get(0);
-
-                        }*/
             }
 
 
@@ -80,7 +60,6 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
 
     public void login(TwitterSession twitterSession) {
         Intent i = new Intent(MainActivity.this, HelloActivity.class);
-        i.putExtra("USERNAME", twitterSession.getUserName());
         startActivity(i);
     }
 
