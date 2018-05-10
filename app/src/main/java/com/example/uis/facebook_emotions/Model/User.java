@@ -1,5 +1,6 @@
-package com.example.uis.facebook_emotions;
+package com.example.uis.facebook_emotions.Model;
 
+import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.twitter.sdk.android.core.TwitterSession;
 
 import java.util.LinkedList;

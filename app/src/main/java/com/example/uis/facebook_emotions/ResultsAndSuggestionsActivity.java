@@ -13,7 +13,10 @@ public class ResultsAndSuggestionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_and_suggestions);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d4e0f8")));
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

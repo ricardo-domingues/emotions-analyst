@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.uis.facebook_emotions.Model.IBMCloudToneAnalyzerListener;
 import com.example.uis.facebook_emotions.R;
-import com.example.uis.facebook_emotions.TweetToAnalyze;
+import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.ibm.watson.developer_cloud.http.ServiceCallback;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone;
@@ -12,7 +12,6 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 
-import java.util.LinkedList;
 import java.util.List;
 
 

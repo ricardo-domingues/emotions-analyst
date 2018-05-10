@@ -2,17 +2,15 @@ package com.example.uis.facebook_emotions;
 
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+
+import com.example.uis.facebook_emotions.Model.User;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
@@ -30,9 +28,11 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         setContentView(R.layout.activity_main);
         twitterLoginButton = findViewById(R.id.loginButton);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d4e0f8")));
-
+        /*Toolbar toolbar = findViewById(R.id.toolbarMain);
+        toolbar.setTitle("Emotions Analyst");
+        toolbar.setBackground(getDrawable(R.drawable.toolbar));
+        toolbar.setTitleTextColor(Color.GRAY);
+        toolbar.setLogo(R.drawable.tw__composer_logo_blue);*/
 
 
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {

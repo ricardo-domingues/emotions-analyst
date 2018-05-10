@@ -2,18 +2,15 @@ package com.example.uis.facebook_emotions;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.uis.facebook_emotions.Model.IBMCloudToneAnalyzerListener;
+import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
+import com.example.uis.facebook_emotions.Model.User;
 import com.example.uis.facebook_emotions.Services.IBMCloudService;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -26,20 +23,24 @@ import java.util.List;
 public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnalyzerListener {
 
     private TextView textViewHello;
-    private ProgressBar progressBarAnalyze;
+    //private ProgressBar progressBarAnalyze;
+
+    private  LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
 
-        ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#d4e0f8")));
 
         textViewHello = findViewById(R.id.textViewHello);
-        progressBarAnalyze = findViewById(R.id.progressBarAnalyze);
+        //progressBarAnalyze = findViewById(R.id.progressBarAnalyze);
 
         textViewHello.setText("Hello, \n" + User.INSTANCE.getUsername());
+
+        lottieAnimationView = findViewById(R.id.animation_view);
+        lottieAnimationView.playAnimation();
+
 
         UserTimeline userTimeline = new UserTimeline.Builder().maxItemsPerRequest(10).build();
         userTimeline.next(null, new Callback<TimelineResult<Tweet>>() {
@@ -60,12 +61,20 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
         });
     }
 
+   /* public void animate(View v) {
+        if (lottieAnimationView.isAnimating()) {
+            lottieAnimationView.cancelAnimation();
+        } else {
+            lottieAnimationView.playAnimation();
+        }
+    }*/
+
     @Override
     public void onTweetsAnalyzed() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                progressBarAnalyze.setVisibility(View.GONE);
+                //progressBarAnalyze.setVisibility(View.GONE);
                 Intent intent = new Intent(HelloActivity.this, ResultsAndSuggestionsActivity.class);
                 startActivity(intent);
             }
