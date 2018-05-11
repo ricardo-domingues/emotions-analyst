@@ -7,11 +7,14 @@ import com.example.uis.facebook_emotions.R;
 import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.ibm.watson.developer_cloud.http.ServiceCallback;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.SentenceTone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
+import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneCategory;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -32,6 +35,7 @@ public enum IBMCloudService {
         ToneAnalyzer analyzer = initToneAnalyzer(caller.getContext());
         ToneOptions options = new ToneOptions.Builder()
                 .addTone(Tone.EMOTION)
+                .addTone(Tone.LANGUAGE)
                 .html(false).build();
 
         final int[] counter = {0};
@@ -43,10 +47,12 @@ public enum IBMCloudService {
                         @Override
                         public void onResponse(ToneAnalysis response) {
                             // More code here
-                            List<ToneScore> scores = response.getDocumentTone()
-                                    .getTones()
-                                    .get(0)
-                                    .getTones();
+                            List<ToneScore> scores = new LinkedList<>();
+
+                            for (ToneCategory toneCategory:response.getDocumentTone().getTones()){
+                                scores.addAll(toneCategory.getTones());
+                            }
+
                             tweetToAnalyze.setEmotionsInTweet(scores);
 
                             counter[0]++;

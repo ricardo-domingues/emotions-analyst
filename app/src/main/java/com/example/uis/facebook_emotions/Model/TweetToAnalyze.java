@@ -35,21 +35,7 @@ public class TweetToAnalyze {
         return emotionsInTweet;
     }
     
-    public LinkedList<ToneScore> getResults(){
-        Collections.sort(emotionsInTweet, new Comparator<ToneScore>() {
-            @Override
-            public int compare(ToneScore o1, ToneScore o2) {
-                return o1.getScore().compareTo(o2.getScore());
-            }
-        });
-        LinkedList<ToneScore> bests = new LinkedList<>();
-        for (int i=0; i<3; i++){
-            bests.add(emotionsInTweet.get(i));
-        }
-        return bests;
-    }
-    
-    
+
     
 
     public LinkedList<MediaEntity> getMediaEntities() {
