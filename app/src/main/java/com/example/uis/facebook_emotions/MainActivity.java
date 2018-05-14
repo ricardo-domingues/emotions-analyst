@@ -8,6 +8,8 @@ import android.view.View;
 
 
 import com.example.uis.facebook_emotions.Model.User;
+import com.example.uis.facebook_emotions.Services.GooglePlacesService;
+import com.google.maps.model.PlaceType;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -28,12 +30,14 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         setContentView(R.layout.activity_main);
         twitterLoginButton = findViewById(R.id.loginButton);
 
-        /*Toolbar toolbar = findViewById(R.id.toolbarMain);
+        //GooglePlacesService.queryNearbyPlaces(this, this, PlaceType.MOVIE_THEATER);
+
+        /*
+        Toolbar toolbar = findViewById(R.id.toolbarMain);
         toolbar.setTitle("Emotions Analyst");
         toolbar.setBackground(getDrawable(R.drawable.toolbar));
         toolbar.setTitleTextColor(Color.GRAY);
         toolbar.setLogo(R.drawable.tw__composer_logo_blue);*/
-
 
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
@@ -70,10 +74,4 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         // Pass the activity result to the login button.
         twitterLoginButton.onActivityResult(requestCode, resultCode, data);
     }
-
-    public void onClickPlacesSpike(View view) {
-        Intent i = new Intent(this, PlacesActivity.class);
-        startActivity(i);
-    }
-
 }
