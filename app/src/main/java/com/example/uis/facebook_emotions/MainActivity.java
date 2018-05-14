@@ -4,10 +4,12 @@ package com.example.uis.facebook_emotions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 
 import com.example.uis.facebook_emotions.Model.User;
+import com.example.uis.facebook_emotions.Services.DetectEmotionService;
 import com.example.uis.facebook_emotions.Services.GooglePlacesService;
 import com.google.maps.model.PlaceType;
 import com.twitter.sdk.android.core.Callback;
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         setContentView(R.layout.activity_main);
         twitterLoginButton = findViewById(R.id.loginButton);
 
-        //GooglePlacesService.queryNearbyPlaces(this, this, PlaceType.MOVIE_THEATER);
+        //GooglePlaceseSrvice.queryNearbyPlaces(this, this, PlaceType.MOVIE_THEATER);
+
+        //new DetectEmotionService(this).execute("https://i.pinimg.com/originals/b8/b3/8f/b8b38fff95814226e1411868bc992cdf.jpg");
 
         /*
         Toolbar toolbar = findViewById(R.id.toolbarMain);
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         toolbar.setBackground(getDrawable(R.drawable.toolbar));
         toolbar.setTitleTextColor(Color.GRAY);
         toolbar.setLogo(R.drawable.tw__composer_logo_blue);*/
-
+        /*
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
             @Override
             public void failure(TwitterException exception) {
             }
-        });
+        });*/
     }
 
 

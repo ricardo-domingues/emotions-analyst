@@ -10,6 +10,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.uis.facebook_emotions.Model.IBMCloudToneAnalyzerListener;
 import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.example.uis.facebook_emotions.Model.User;
+import com.example.uis.facebook_emotions.Services.DetectEmotionService;
 import com.example.uis.facebook_emotions.Services.IBMCloudService;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -52,6 +53,7 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
                 }
 
                 IBMCloudService.analyzeTweets(User.INSTANCE.getTweets(), HelloActivity.this);
+                //new DetectEmotionService(HelloActivity.this).execute(User.INSTANCE.getTweets());
             }
 
             @Override
