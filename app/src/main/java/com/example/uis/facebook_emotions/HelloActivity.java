@@ -51,7 +51,7 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
                     User.INSTANCE.addTweet(new TweetToAnalyze(t.text));
                 }
 
-                IBMCloudService.INSTANCE.analyzeTweets(User.INSTANCE.getTweets(), HelloActivity.this);
+                IBMCloudService.analyzeTweets(User.INSTANCE.getTweets(), HelloActivity.this);
             }
 
             @Override

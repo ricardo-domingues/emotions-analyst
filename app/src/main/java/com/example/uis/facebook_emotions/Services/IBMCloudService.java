@@ -18,10 +18,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public enum IBMCloudService {
-    INSTANCE;
+public abstract class IBMCloudService {
 
-    private ToneAnalyzer initToneAnalyzer(Context context){
+    private static ToneAnalyzer initToneAnalyzer(Context context){
 
         ToneAnalyzer toneAnalyzer = new ToneAnalyzer("2017-07-01");
         toneAnalyzer.setUsernameAndPassword(context.getString(R.string.tone_analyzer_username),
@@ -30,7 +29,7 @@ public enum IBMCloudService {
         return toneAnalyzer;
     }
 
-    public void analyzeTweets(final List<TweetToAnalyze> tweetsToAnalyze, final IBMCloudToneAnalyzerListener caller){
+    public static void analyzeTweets(final List<TweetToAnalyze> tweetsToAnalyze, final IBMCloudToneAnalyzerListener caller){
 
         ToneAnalyzer analyzer = initToneAnalyzer(caller.getContext());
         ToneOptions options = new ToneOptions.Builder()

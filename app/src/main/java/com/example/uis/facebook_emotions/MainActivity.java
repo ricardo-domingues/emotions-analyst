@@ -48,15 +48,9 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
 
                 //Calling login method and passing twitter session
                 login(User.INSTANCE.getTwitterSession());
-
-
             }
-
-
             @Override
             public void failure(TwitterException exception) {
-
-
             }
         });
     }
