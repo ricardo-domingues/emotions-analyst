@@ -1,11 +1,9 @@
 package com.example.uis.facebook_emotions.Model;
 
-import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
-import com.twitter.sdk.android.core.models.MediaEntity;
+import com.microsoft.projectoxford.face.contract.Emotion;
+import com.microsoft.projectoxford.face.contract.FaceAttribute;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,13 +11,12 @@ public class TweetToAnalyze {
 
     private String text;
     private List<ToneScore> emotionsInTweet;
-    private LinkedList<MediaEntity> mediaEntities;
-
-
-    public TweetToAnalyze(String text) {
+    private String mediaEntity;
+    
+    public TweetToAnalyze(String text, String mediaEntity) {
         this.text = text;
-        emotionsInTweet = new LinkedList<>();
-        mediaEntities = new LinkedList<>();
+        this.emotionsInTweet = new LinkedList<>();
+        this.mediaEntity = mediaEntity;
     }
 
     public String getText() {
@@ -35,8 +32,8 @@ public class TweetToAnalyze {
     }
     
 
-    public LinkedList<MediaEntity> getMediaEntities() {
-        return mediaEntities;
+    public String getMediaEntities() {
+        return mediaEntity;
     }
 
 

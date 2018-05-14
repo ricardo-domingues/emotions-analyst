@@ -35,14 +35,13 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
         //GooglePlaceseSrvice.queryNearbyPlaces(this, this, PlaceType.MOVIE_THEATER);
 
         //new DetectEmotionService(this).execute("https://i.pinimg.com/originals/b8/b3/8f/b8b38fff95814226e1411868bc992cdf.jpg");
-
         /*
         Toolbar toolbar = findViewById(R.id.toolbarMain);
         toolbar.setTitle("Emotions Analyst");
         toolbar.setBackground(getDrawable(R.drawable.toolbar));
         toolbar.setTitleTextColor(Color.GRAY);
         toolbar.setLogo(R.drawable.tw__composer_logo_blue);*/
-        /*
+
         twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity /*implements IBMCloudToneAna
             @Override
             public void failure(TwitterException exception) {
             }
-        });*/
+        });
     }
 
 

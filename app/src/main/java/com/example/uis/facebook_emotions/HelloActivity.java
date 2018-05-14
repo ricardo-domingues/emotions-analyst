@@ -49,11 +49,12 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
             public void success(Result<TimelineResult<Tweet>> result) {
                 List<Tweet> tweets = result.data.items;
                 for (Tweet t : tweets) {
-                    User.INSTANCE.addTweet(new TweetToAnalyze(t.text));
+                    String mediaUrl = t.entities.media.isEmpty() ? null : t.entities.media.get(0).mediaUrlHttps;
+                    User.INSTANCE.addTweet(new TweetToAnalyze(t.text, mediaUrl));
                 }
 
                 IBMCloudService.analyzeTweets(User.INSTANCE.getTweets(), HelloActivity.this);
-                //new DetectEmotionService(HelloActivity.this).execute(User.INSTANCE.getTweets());
+                new DetectEmotionService(HelloActivity.this).execute(User.INSTANCE.getTweets());
             }
 
             @Override

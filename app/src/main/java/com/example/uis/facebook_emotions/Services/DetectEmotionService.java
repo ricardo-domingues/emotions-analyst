@@ -10,34 +10,40 @@ import com.microsoft.projectoxford.face.FaceServiceClient;
 import com.microsoft.projectoxford.face.FaceServiceRestClient;
 import com.microsoft.projectoxford.face.contract.Face;
 
-public class DetectEmotionService extends AsyncTask<TweetToAnalyze, Void, Face[]> {
+import java.util.LinkedList;
+
+public class DetectEmotionService extends AsyncTask<LinkedList<TweetToAnalyze>, Void, LinkedList<Face[]>> {
 
     private FaceServiceRestClient faceServiceRestClient;
+    private LinkedList<Face[]> results;
 
     public DetectEmotionService(Context context){
         this.faceServiceRestClient = new FaceServiceRestClient(context.getString(R.string.microsoft_face_url), context.getString(R.string.microsoft_face_api_key));
+        results = new LinkedList<>();
     }
     @Override
-    protected Face[] doInBackground(TweetToAnalyze... tweets) {
+    protected LinkedList<Face[]> doInBackground(LinkedList<TweetToAnalyze>... tweets) {
 
         FaceServiceClient.FaceAttributeType[] emotions = new FaceServiceClient.FaceAttributeType[] {
                 FaceServiceClient.FaceAttributeType.Emotion,
         };
 
-        for(TweetToAnalyze tweet : tweets) {
+        LinkedList<TweetToAnalyze> tweetToAnalyzes = tweets[0];
+        for(TweetToAnalyze tweet: tweetToAnalyzes){
             try {
-                return this.faceServiceRestClient.detect(tweet.getMediaEntities().get(0).url
-                        , false, false, emotions);
+                if(tweet.getMediaEntities() != null){
+                    results.add(this.faceServiceRestClient.detect(tweet.getMediaEntities(), false, false, emotions));
+                }
             } catch (Exception e) {
                 Log.d("Error", e.getMessage());
                 return null;
             }
         }
-        return null;
+        return results;
     }
 
-    protected void onPostExecute(Face[] face) {
-        Log.d("FaceRegonition", face.toString());
+    protected void onPostExecute(LinkedList<Face[]> results) {
+        Log.d("FaceRegonition", results.toString());
     }
 }
 
