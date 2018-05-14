@@ -16,7 +16,6 @@ public class TweetToAnalyze {
     private LinkedList<MediaEntity> mediaEntities;
 
 
-
     public TweetToAnalyze(String text) {
         this.text = text;
         emotionsInTweet = new LinkedList<>();
@@ -34,8 +33,6 @@ public class TweetToAnalyze {
     public List<ToneScore> getEmotionsInTweet() {
         return emotionsInTweet;
     }
-    
-
     
 
     public LinkedList<MediaEntity> getMediaEntities() {

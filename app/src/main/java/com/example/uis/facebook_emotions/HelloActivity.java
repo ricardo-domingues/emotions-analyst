@@ -34,7 +34,7 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
 
 
         textViewHello = findViewById(R.id.textViewHello);
-        //progressBarAnalyze = findViewById(R.id.progressBarAnalyze);
+
 
         textViewHello.setText("Hello, \n" + User.INSTANCE.getUsername());
 
@@ -61,13 +61,6 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
         });
     }
 
-   /* public void animate(View v) {
-        if (lottieAnimationView.isAnimating()) {
-            lottieAnimationView.cancelAnimation();
-        } else {
-            lottieAnimationView.playAnimation();
-        }
-    }*/
 
     @Override
     public void onTweetsAnalyzed() {
@@ -75,7 +68,7 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
             @Override
             public void run() {
                 //progressBarAnalyze.setVisibility(View.GONE);
-                Intent intent = new Intent(HelloActivity.this, ResultsAndSuggestionsActivity.class);
+                Intent intent = new Intent(HelloActivity.this, ResultsActivity.class);
                 startActivity(intent);
             }
         });
