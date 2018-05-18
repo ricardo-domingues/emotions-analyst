@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.List;
 
 public enum User {
 
@@ -17,7 +16,6 @@ public enum User {
     private TwitterSession twitterSession;
     private String username;
     private EmotionAnalysisResult emotionResult;
-
 
     User(){
         tweets = new LinkedList<>();
@@ -101,5 +99,9 @@ public enum User {
 
     public void calculateEmotionAnalysisResult() {
         this.emotionResult.calculateResults(this.tweets);
+    }
+
+    public ArrayList<EmotionAnalysisResult.Emotion> getHighestEmotions() {
+        return emotionResult.getHighestEmotions();
     }
 }
