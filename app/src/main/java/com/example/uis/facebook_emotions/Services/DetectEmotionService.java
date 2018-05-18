@@ -31,8 +31,8 @@ public class DetectEmotionService extends AsyncTask<LinkedList<TweetToAnalyze>, 
         LinkedList<TweetToAnalyze> tweetToAnalyzes = tweets[0];
         for(TweetToAnalyze tweet: tweetToAnalyzes){
             try {
-                if(tweet.getMediaEntities() != null){
-                    results.add(this.faceServiceRestClient.detect(tweet.getMediaEntities(), false, false, emotions));
+                if(tweet.getMediaEntity() != null){
+                    results.add(this.faceServiceRestClient.detect(tweet.getMediaEntity(), false, false, emotions));
                 }
             } catch (Exception e) {
                 Log.d("Error", e.getMessage());

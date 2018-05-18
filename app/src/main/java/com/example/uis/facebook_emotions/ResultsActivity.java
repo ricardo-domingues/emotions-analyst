@@ -26,16 +26,11 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        List<ToneScore> bests = User.INSTANCE.getTheBestResults();
+        //List<ToneScore> bests = User.INSTANCE.getTheBestResults();
 
         textViewResults = findViewById(R.id.textViewResult);
         lottieAnimationView = findViewById(R.id.animationViewResult);
-
-
-
-
-
-
+        /*
         String string = "";
         for (ToneScore toneScore: bests) {
             if(toneScore.getName().compareToIgnoreCase("joy")==0||toneScore.getName().compareToIgnoreCase("confident")==0){
@@ -44,8 +39,8 @@ public class ResultsActivity extends AppCompatActivity {
                 lottieAnimationView.setAnimation(R.raw.cries);
             }
             string = string+toneScore.getName()+"\n";
-        }
-        textViewResults.setText(string);
+        }*/
+        textViewResults.setText("");
     }
 
     @Override

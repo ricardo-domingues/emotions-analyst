@@ -1,15 +1,11 @@
 package com.example.uis.facebook_emotions.Model;
 
-import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.Tone;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 import com.twitter.sdk.android.core.TwitterSession;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,12 +16,14 @@ public enum User {
     private LinkedList<TweetToAnalyze> tweets;
     private TwitterSession twitterSession;
     private String username;
+    private EmotionAnalysisResult emotionResult;
 
 
     User(){
         tweets = new LinkedList<>();
         twitterSession = null;
         username = "";
+        emotionResult = new EmotionAnalysisResult();
 
     }
 
@@ -57,11 +55,13 @@ public enum User {
         }
     }
 
-    public List<ToneScore> getTheBestResults(){
+    public void aggregateEmotions(){
+
+
         //HashMap<ToneScore, Double> scoreDoubleHashMap = new HashMap<>();
         ArrayList<ToneScore> results = new ArrayList<>(5);
 
-        for (ToneScore toneScore:tweets.get(0).getEmotionsInTweet()) {
+        for (ToneScore toneScore:tweets.get(0).getEmotionsInTweetText()) {
             ToneScore tone = new ToneScore();
             tone.setName(toneScore.getName());
             tone.setScore(0.0);
@@ -70,8 +70,8 @@ public enum User {
         }
 
         for (TweetToAnalyze tweetToAnalyze: tweets) {
-            for (int i=0; i<tweetToAnalyze.getEmotionsInTweet().size();i++){
-                results.get(i).setScore(results.get(i).getScore()+tweetToAnalyze.getEmotionsInTweet().get(i).getScore());
+            for (int i = 0; i<tweetToAnalyze.getEmotionsInTweetText().size(); i++){
+                results.get(i).setScore(results.get(i).getScore()+tweetToAnalyze.getEmotionsInTweetText().get(i).getScore());
 
             }
 
@@ -96,13 +96,10 @@ public enum User {
         results.remove(3);
 
 
-
-
-        return results;
-
     }
 
 
-
-
+    public void calculateEmotionAnalysisResult() {
+        this.emotionResult.calculateResults(this.tweets);
+    }
 }

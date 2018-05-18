@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.uis.facebook_emotions.Model.IBMCloudToneAnalyzerListener;
+import com.example.uis.facebook_emotions.AsyncTasks.EmotionAnalysisTask;
+import com.example.uis.facebook_emotions.Model.EmotionAnalysisListener;
 import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.example.uis.facebook_emotions.Model.User;
-import com.example.uis.facebook_emotions.Services.DetectEmotionService;
-import com.example.uis.facebook_emotions.Services.IBMCloudService;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -19,27 +19,19 @@ import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
-import java.util.List;
+public class HelloActivity extends AppCompatActivity implements EmotionAnalysisListener {
 
-public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnalyzerListener {
-
-    private TextView textViewHello;
     //private ProgressBar progressBarAnalyze;
-
-    private  LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
 
-
-        textViewHello = findViewById(R.id.textViewHello);
-
-
+        TextView textViewHello = findViewById(R.id.textViewHello);
         textViewHello.setText("Hello, \n" + User.INSTANCE.getUsername());
 
-        lottieAnimationView = findViewById(R.id.animation_view);
+        LottieAnimationView lottieAnimationView = findViewById(R.id.animation_view);
         lottieAnimationView.playAnimation();
 
 
@@ -47,14 +39,12 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
         userTimeline.next(null, new Callback<TimelineResult<Tweet>>() {
             @Override
             public void success(Result<TimelineResult<Tweet>> result) {
-                List<Tweet> tweets = result.data.items;
-                for (Tweet t : tweets) {
+
+                for (Tweet t : result.data.items) {
                     String mediaUrl = t.entities.media.isEmpty() ? null : t.entities.media.get(0).mediaUrlHttps;
                     User.INSTANCE.addTweet(new TweetToAnalyze(t.text, mediaUrl));
                 }
-
-                IBMCloudService.analyzeTweets(User.INSTANCE.getTweets(), HelloActivity.this);
-                new DetectEmotionService(HelloActivity.this).execute(User.INSTANCE.getTweets());
+                new EmotionAnalysisTask(HelloActivity.this).execute();
             }
 
             @Override
@@ -64,22 +54,16 @@ public class HelloActivity extends AppCompatActivity implements IBMCloudToneAnal
         });
     }
 
-
     @Override
-    public void onTweetsAnalyzed() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //progressBarAnalyze.setVisibility(View.GONE);
-                Intent intent = new Intent(HelloActivity.this, ResultsActivity.class);
-                startActivity(intent);
-            }
-        });
+    public void onSuccess() {
+        Intent i = new Intent(this, ResultsActivity.class);
+        startActivity(i);
     }
 
     @Override
-    public void onToneAnalyzerError(Exception e) {
-
+    public void onError(Exception e) {
+        Log.e("EMOTION_ANALYSIS_ERROR", "Something went wrong");
+        e.printStackTrace();
     }
 
     @Override
