@@ -62,14 +62,17 @@
 
                     <Button
                         android:id="@+id/buttonSeeNearbyMovieTheaters"
+                        style="@android:style/Widget.Button.Small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
                         android:layout_marginRight="50dp"
                         android:layout_marginTop="16dp"
-                        android:background="@android:color/holo_blue_dark"
-                        android:text="See Movie Theathers Near You"
-                        android:textAllCaps="false" />
+                        android:background="@drawable/tw__btn_composer_tweet"
+                        android:text="@string/button_see_nearby_movie_theaters_text"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="17sp" />
 
                 </LinearLayout>
             </RelativeLayout>

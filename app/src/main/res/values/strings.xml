@@ -11,4 +11,5 @@
     <string name="title_activity_suggestions">SuggestionsActivity</string>
     <string name="activity_suggestions_title">Suggested Movies</string>
     <string name="activity_suggestions_appbar_context">Here are some suggestions based on your mood</string>
+    <string name="button_see_nearby_movie_theaters_text">See Movie Theathers Near You</string>
 </resources>
