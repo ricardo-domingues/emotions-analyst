@@ -2,7 +2,7 @@ package com.example.uis.facebook_emotions.AsyncTasks;
 
 import android.os.AsyncTask;
 
-import com.example.uis.facebook_emotions.Model.EmotionAnalysisListener;
+import com.example.uis.facebook_emotions.Model.AsyncTaskListener;
 import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.example.uis.facebook_emotions.Model.User;
 import com.example.uis.facebook_emotions.R;
@@ -15,7 +15,6 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
 import com.microsoft.projectoxford.face.FaceServiceClient;
 import com.microsoft.projectoxford.face.FaceServiceRestClient;
-import com.microsoft.projectoxford.face.contract.Emotion;
 import com.microsoft.projectoxford.face.contract.Face;
 
 import java.util.HashMap;
@@ -26,11 +25,11 @@ public class EmotionAnalysisTask extends AsyncTask<Void, Void, Void> {
 
     private static final String TONE_MAP_KEY = "TONE";
     private static final String MEDIA_MAP_KEY = "MEDIA";
-    private EmotionAnalysisListener caller;
+    private AsyncTaskListener caller;
     private HashMap<String, Integer> counters;
     private int tweetCount;
 
-    public EmotionAnalysisTask(EmotionAnalysisListener caller) {
+    public EmotionAnalysisTask(AsyncTaskListener caller) {
        this.caller = caller;
 
         counters = new HashMap<>();

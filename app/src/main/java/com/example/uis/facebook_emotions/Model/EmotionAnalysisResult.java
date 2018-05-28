@@ -32,6 +32,7 @@ public class EmotionAnalysisResult {
        Fear
        Joy
        Sadness
+       Disgust
        Analytical
        Confident
        Tentative

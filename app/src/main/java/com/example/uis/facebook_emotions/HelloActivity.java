@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.uis.facebook_emotions.AsyncTasks.EmotionAnalysisTask;
-import com.example.uis.facebook_emotions.Model.EmotionAnalysisListener;
+import com.example.uis.facebook_emotions.Model.AsyncTaskListener;
 import com.example.uis.facebook_emotions.Model.TweetToAnalyze;
 import com.example.uis.facebook_emotions.Model.User;
 import com.twitter.sdk.android.core.Callback;
@@ -19,7 +19,7 @@ import com.twitter.sdk.android.core.models.Tweet;
 import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
-public class HelloActivity extends AppCompatActivity implements EmotionAnalysisListener {
+public class HelloActivity extends AppCompatActivity implements AsyncTaskListener {
 
     //private ProgressBar progressBarAnalyze;
 

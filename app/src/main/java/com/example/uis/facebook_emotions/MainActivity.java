@@ -4,14 +4,9 @@ package com.example.uis.facebook_emotions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 
 import com.example.uis.facebook_emotions.Model.User;
-import com.example.uis.facebook_emotions.Services.DetectEmotionService;
-import com.example.uis.facebook_emotions.Services.GooglePlacesService;
-import com.google.maps.model.PlaceType;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
