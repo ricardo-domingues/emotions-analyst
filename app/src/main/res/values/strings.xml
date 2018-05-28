@@ -8,4 +8,7 @@
     <string name="microsoft_face_url">https://westeurope.api.cognitive.microsoft.com/face/v1.0</string>
     <string name="microsoft_face_api_key">0b84fc5a9ee34c7ca4dc45f6a079223a</string>
     <string name="themoviedb_api_key">18f2c87902f1c7295fb2c4f6e0e985a7</string>
+    <string name="title_activity_suggestions">SuggestionsActivity</string>
+    <string name="activity_suggestions_title">Suggested Movies</string>
+    <string name="activity_suggestions_appbar_context">Here are some suggestions based on your mood</string>
 </resources>
