@@ -21,5 +21,7 @@ public class Movie {
     private String posterPath;
 
 
-
+    public String getTitle(){
+        return title;
+    }
 }

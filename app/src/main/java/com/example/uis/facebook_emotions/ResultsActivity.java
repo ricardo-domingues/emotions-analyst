@@ -10,9 +10,6 @@ import android.widget.Toolbar;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.uis.facebook_emotions.Model.EmotionAnalysisResult;
 import com.example.uis.facebook_emotions.Model.User;
-import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneScore;
-
-import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
 

@@ -26,7 +26,10 @@
         </activity>
         <activity android:name=".HelloActivity" />
         <activity android:name=".ResultsActivity" />
-        <activity android:name=".SuggestionsActivity"></activity>
+        <activity
+            android:name=".SuggestionsActivity"
+            android:label="@string/title_activity_suggestions"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -138,6 +138,7 @@ public class EmotionAnalysisResult {
         private static final String SADNESS = "Sadness";
         private static final String TENTATIVE = "Tentative";
 
+
         private double score;
         private String name;
         private MovieGenre[] genres;
