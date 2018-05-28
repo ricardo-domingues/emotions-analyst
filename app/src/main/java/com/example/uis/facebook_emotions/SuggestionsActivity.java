@@ -6,45 +6,57 @@ import android.util.Log;
 
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.uis.facebook_emotions.Model.EmotionAnalysisResult;
 import com.example.uis.facebook_emotions.Model.Movie;
 import com.example.uis.facebook_emotions.Model.MovieGenre;
+import com.example.uis.facebook_emotions.Model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+
 public class SuggestionsActivity extends AppCompatActivity {
+    private LinkedList<Movie> movies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggestions);
-
+        movies = new LinkedList<>();
         requestMoviesByGenres();
     }
 
     private void requestMoviesByGenres() {
-
-
         //Get the genres we need to suggest from somewhere
+        LinkedList<MovieGenre> genresToFetch = User.INSTANCE.getRecommendedMoviesByGenre();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, generateURL(MovieGenre.ACTION), null,
-                onRequestMoviesInGenreSuccess(), onRequestMoviesInGenreError());
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        Volley.newRequestQueue(this).add(request);
+        for(MovieGenre movieGenre : genresToFetch) {
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, generateURL(movieGenre), null,
+                    onRequestMoviesInGenreSuccess(), onRequestMoviesInGenreError());
 
+            requestQueue.add(request);
+        }
     }
 
     private Response.ErrorListener onRequestMoviesInGenreError() {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("Error", error.toString());
             }
         };
     }
@@ -61,9 +73,8 @@ public class SuggestionsActivity extends AppCompatActivity {
                     results = (JSONArray) response.get("results");
 
                     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-
-                    Movie[] movies = gson.fromJson(results.toString(), Movie[].class);
+                    Movie[] moviesArray = gson.fromJson(results.toString(), Movie[].class);
+                    movies.addAll(Arrays.asList(moviesArray));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

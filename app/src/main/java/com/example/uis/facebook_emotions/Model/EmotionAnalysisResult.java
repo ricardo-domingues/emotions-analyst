@@ -38,20 +38,29 @@ public class EmotionAnalysisResult {
        Tentative
      */
 
+    private static final MovieGenre[] movies_genre_analytical = new MovieGenre[]{MovieGenre.DOCUMENTARY, MovieGenre.HISTORY, MovieGenre.WESTERN};
+    private static final MovieGenre[] movies_genre_joy = new MovieGenre[]{MovieGenre.ROMANCE, MovieGenre.COMEDY, MovieGenre.HORROR};
+    private static final MovieGenre[] movies_genre_tentative = new MovieGenre[]{MovieGenre.ADVENTURE, MovieGenre.SCIENCE_FICTION, MovieGenre.DRAMA};
+    private static final MovieGenre[] movies_genre_confident = new MovieGenre[]{MovieGenre.ACTION, MovieGenre.THRILLER, MovieGenre.ADVENTURE};
+    private static final MovieGenre[] movies_genre_anger = new MovieGenre[]{MovieGenre.WAR, MovieGenre.CRIME, MovieGenre.ACTION};
+    private static final MovieGenre[] movies_genre_sadness = new MovieGenre[]{MovieGenre.DRAMA, MovieGenre.CRIME, MovieGenre.COMEDY};
+    private static final MovieGenre[] movies_genre_fear = new MovieGenre[]{MovieGenre.ANIMATION, MovieGenre.COMEDY, MovieGenre.SCIENCE_FICTION};
+    private static final MovieGenre[] movies_genre_disgust = new MovieGenre[]{MovieGenre.FAMILY, MovieGenre.FANTASY, MovieGenre.DRAMA};
+
 
     private HashMap<String, Emotion> emotions;
 
     EmotionAnalysisResult() {
 
         emotions = new HashMap<>();
-        emotions.put(Emotion.ANGER, new Emotion(Emotion.ANGER));
-        emotions.put(Emotion.ANALYTICAL, new Emotion(Emotion.ANALYTICAL));
-        emotions.put(Emotion.CONFIDENT, new Emotion(Emotion.CONFIDENT));
-        emotions.put(Emotion.DISGUST, new Emotion(Emotion.DISGUST));
-        emotions.put(Emotion.FEAR, new Emotion(Emotion.FEAR));
-        emotions.put(Emotion.JOY, new Emotion(Emotion.JOY));
-        emotions.put(Emotion.SADNESS, new Emotion(Emotion.SADNESS));
-        emotions.put(Emotion.TENTATIVE, new Emotion(Emotion.TENTATIVE));
+        emotions.put(Emotion.ANGER, new Emotion(Emotion.ANGER, movies_genre_anger));
+        emotions.put(Emotion.ANALYTICAL, new Emotion(Emotion.ANALYTICAL, movies_genre_analytical));
+        emotions.put(Emotion.CONFIDENT, new Emotion(Emotion.CONFIDENT, movies_genre_confident));
+        emotions.put(Emotion.DISGUST, new Emotion(Emotion.DISGUST, movies_genre_disgust));
+        emotions.put(Emotion.FEAR, new Emotion(Emotion.FEAR, movies_genre_fear));
+        emotions.put(Emotion.JOY, new Emotion(Emotion.JOY, movies_genre_joy));
+        emotions.put(Emotion.SADNESS, new Emotion(Emotion.SADNESS, movies_genre_sadness));
+        emotions.put(Emotion.TENTATIVE, new Emotion(Emotion.TENTATIVE, movies_genre_tentative));
     }
 
 
@@ -84,6 +93,17 @@ public class EmotionAnalysisResult {
 
     }
 
+    public LinkedList<MovieGenre> getRecommendedGenreByEmotion(){
+        LinkedList<MovieGenre> genres = new LinkedList<>();
+        ArrayList<EmotionAnalysisResult.Emotion> emotions = User.INSTANCE.getHighestEmotions();
+
+        for(EmotionAnalysisResult.Emotion emotion : emotions){
+            genres.add(emotion.getGenres()[(int) Math.ceil(Math.random() * emotion.getGenres().length) - 1]);
+        }
+
+        return genres;
+    }
+
     private double getCombinedScore(double textScore, double mediaScore){
         return (mediaScore + textScore) / 2;
     }
@@ -107,7 +127,6 @@ public class EmotionAnalysisResult {
         return results;
     }
 
-
     public class Emotion {
 
         private static final String ANGER = "Anger";
@@ -121,10 +140,12 @@ public class EmotionAnalysisResult {
 
         private double score;
         private String name;
+        private MovieGenre[] genres;
 
-        Emotion(String name) {
+        Emotion(String name, MovieGenre[] genres) {
             this.name = name;
             this.score = 0;
+            this.genres = genres;
         }
 
         void addToScore(double score){
@@ -141,6 +162,10 @@ public class EmotionAnalysisResult {
 
         public String getName() {
             return name;
+        }
+
+        public MovieGenre[] getGenres() {
+            return genres;
         }
     }
 

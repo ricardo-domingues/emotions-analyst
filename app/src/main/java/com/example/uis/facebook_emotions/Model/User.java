@@ -16,13 +16,14 @@ public enum User {
     private TwitterSession twitterSession;
     private String username;
     private EmotionAnalysisResult emotionResult;
+    private LinkedList<EmotionAnalysisResult.Emotion> recommendedGenres;
 
     User(){
         tweets = new LinkedList<>();
         twitterSession = null;
         username = "";
         emotionResult = new EmotionAnalysisResult();
-
+        recommendedGenres = new LinkedList<>();
     }
 
     public void setUsername(String username) {
@@ -103,5 +104,9 @@ public enum User {
 
     public ArrayList<EmotionAnalysisResult.Emotion> getHighestEmotions() {
         return emotionResult.getHighestEmotions();
+    }
+
+    public LinkedList<MovieGenre> getRecommendedMoviesByGenre(){
+        return emotionResult.getRecommendedGenreByEmotion();
     }
 }
