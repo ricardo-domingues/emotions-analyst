@@ -2,6 +2,11 @@ package com.example.uis.facebook_emotions.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.Months;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Movie {
@@ -23,5 +28,32 @@ public class Movie {
 
     public String getTitle(){
         return title;
+    }
+
+    public String getReleaseDateToString() {
+        return new SimpleDateFormat("yyyy-MM-dd").format(releaseDate);
+    }
+
+    public String genresToString(){
+        StringBuilder builder = new StringBuilder();
+        for (Integer id : genres) {
+            builder.append(MovieGenre.getMovieGenreById(id).getName() + ", ");
+        }
+        return builder.toString().substring(0, builder.toString().length() - 2);
+    }
+
+    public String inCinemaToString() {
+
+        Calendar currentDate = Calendar.getInstance();
+
+        Calendar releaseDate = Calendar.getInstance();
+        releaseDate.setTime(this.releaseDate);
+
+        int monthsToCurrentDate = ((currentDate.get(Calendar.YEAR) - 1) * 12) + currentDate.get(Calendar.MONTH);
+        int monthsToReleaseDate = ((releaseDate.get(Calendar.YEAR) - 1) * 12) + releaseDate.get(Calendar.MONTH);
+
+        int result = monthsToCurrentDate - monthsToReleaseDate;
+
+        return result > 3 ? "Not in Cinemas" : "In Cinemas";
     }
 }

@@ -35,4 +35,20 @@ public enum MovieGenre {
     public int getId() {
         return id;
     }
+
+    public String getName(){
+        return name;
+    }
+
+
+    public static MovieGenre getMovieGenreById(Integer id){
+
+        for (MovieGenre genre : MovieGenre.values()) {
+            if(genre.getId() == id){
+                return genre;
+            }
+        }
+
+        return null;
+    }
 }

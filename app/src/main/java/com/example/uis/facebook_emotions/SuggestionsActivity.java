@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.uis.facebook_emotions.Adapters.MovieAdapter;
 import com.example.uis.facebook_emotions.Model.Movie;
 import com.example.uis.facebook_emotions.Model.MovieGenre;
 import com.example.uis.facebook_emotions.Model.User;
@@ -67,7 +68,6 @@ public class SuggestionsActivity extends AppCompatActivity {
         
     }
 
-    private void requestMoviesByGenres() {
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
