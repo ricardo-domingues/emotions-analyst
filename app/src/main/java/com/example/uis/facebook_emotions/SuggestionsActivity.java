@@ -62,7 +62,6 @@ public class SuggestionsActivity extends AppCompatActivity {
 
                     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-
                     Movie[] movies = gson.fromJson(results.toString(), Movie[].class);
 
                 } catch (JSONException e) {
