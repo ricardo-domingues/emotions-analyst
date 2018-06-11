@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.uis.facebook_emotions.Model.Movie;
 import com.example.uis.facebook_emotions.R;
 
@@ -27,6 +28,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             releaseDate = view.findViewById(R.id.textViewReleaseDate);
             inCinema = view.findViewById(R.id.textViewInCinemas);
             genres = view.findViewById(R.id.textViewMovieGenres);
+            thumbnail = view.findViewById(R.id.imageViewMovie);
         }
     }
 
@@ -47,10 +49,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Movie movie = movieList.get(position);
+
         holder.title.setText(movie.getTitle());
         holder.releaseDate.setText(movie.getReleaseDateToString());
         holder.inCinema.setText(movie.inCinemaToString());
         holder.genres.setText(movie.genresToString());
+
+        Glide.with(mContext).load("https://image.tmdb.org/t/p/w300" + movie.getPosterPath()).into(holder.thumbnail);
     }
 
     @Override

@@ -6,10 +6,11 @@
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">dL1yHeK9hzWmQR0seH6FJ4gr3pATBD8Ei2iWyMeSYcVYs7skMG</string>
     <string name="google_places_api_key">AIzaSyBe8q55oDql4Iv3bKX_7I6s8RW7gRmA878</string>
     <string name="microsoft_face_url">https://westeurope.api.cognitive.microsoft.com/face/v1.0</string>
-    <string name="microsoft_face_api_key">0b84fc5a9ee34c7ca4dc45f6a079223a</string>
+    <string name="microsoft_face_api_key">16bbb2e6b78b4b9e95fddaa8600cf529</string>
     <string name="themoviedb_api_key">18f2c87902f1c7295fb2c4f6e0e985a7</string>
     <string name="title_activity_suggestions">SuggestionsActivity</string>
     <string name="activity_suggestions_title">Suggested Movies</string>
     <string name="activity_suggestions_appbar_context">Here are some suggestions based on your mood</string>
     <string name="button_see_nearby_movie_theaters_text">See Movie Theathers Near You</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
 </resources>

@@ -37,7 +37,13 @@ public class Movie {
     public String genresToString(){
         StringBuilder builder = new StringBuilder();
         for (Integer id : genres) {
-            builder.append(MovieGenre.getMovieGenreById(id).getName() + ", ");
+
+            //Prego
+            MovieGenre genre = MovieGenre.getMovieGenreById(id);
+            if(genre != null  && genre.getName() != null) {
+                builder.append(MovieGenre.getMovieGenreById(id).getName() + ", ");
+            }
+
         }
         return builder.toString().substring(0, builder.toString().length() - 2);
     }
@@ -55,5 +61,9 @@ public class Movie {
         int result = monthsToCurrentDate - monthsToReleaseDate;
 
         return result > 3 ? "Not in Cinemas" : "In Cinemas";
+    }
+
+    public String getPosterPath() {
+        return posterPath;
     }
 }

@@ -1,12 +1,18 @@
 package com.example.uis.facebook_emotions;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -43,6 +49,7 @@ public class SuggestionsActivity extends AppCompatActivity {
     private LinkedList<Movie> movieList;
     private MovieAdapter adapter;
     private LinearLayout toolbarContent;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +71,23 @@ public class SuggestionsActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
         makeMoviesByGenreRequest();
+
         
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    makeMoviesByGenreRequest();
+                }
+            }
+        }
 
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
@@ -146,5 +167,9 @@ public class SuggestionsActivity extends AppCompatActivity {
         return "https://api.themoviedb.org/3/genre/" + genre.getId() + "/movies?api_key="
                 + getString(R.string.themoviedb_api_key)
                 + "&language=en-US&include_adult=false&sort_by=created_at.asc";
+    }
+
+    public void onClickButtonSeeSuggestions(View view) {
+        startActivity(new Intent(this, PlacesActivity.class));
     }
 }

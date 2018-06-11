@@ -2,13 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uis.facebook_emotions">
 
+    <!--
     <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyDOCrKk3k5ANB-z6CHwIroRgc3NBDvEOHE" />
+    -->
+
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBb-LZRvRs10Xx2oA-l58TdO8z-GwESWm8" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +37,16 @@
             android:name=".SuggestionsActivity"
             android:label="@string/title_activity_suggestions"
             android:theme="@style/AppTheme" />
+        <activity android:name=".PlacesActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBb-LZRvRs10Xx2oA-l58TdO8z-GwESWm8" />
+
+        <activity
+            android:name=".WebViewActivity"
+            android:label="@string/title_activity_web_view"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

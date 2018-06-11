@@ -72,7 +72,8 @@
                         android:text="@string/button_see_nearby_movie_theaters_text"
                         android:textAllCaps="false"
                         android:textColor="@android:color/background_light"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:onClick="onClickButtonSeeSuggestions"/>
 
                 </LinearLayout>
             </RelativeLayout>
