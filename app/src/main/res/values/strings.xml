@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Emotions Analyst</string>
-    <string name="facebook_app_id">238438110041178</string>
-    <string name="fb_login_protocol_scheme">fb238438110041178</string>
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">IkceBrzlZbnXMLRR1VXinGFhC</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">dL1yHeK9hzWmQR0seH6FJ4gr3pATBD8Ei2iWyMeSYcVYs7skMG</string>
-    <string name="google_places_api_key">AIzaSyBe8q55oDql4Iv3bKX_7I6s8RW7gRmA878</string>
-    <string name="microsoft_face_url">https://westeurope.api.cognitive.microsoft.com/face/v1.0</string>
-    <string name="microsoft_face_api_key">16bbb2e6b78b4b9e95fddaa8600cf529</string>
-    <string name="themoviedb_api_key">18f2c87902f1c7295fb2c4f6e0e985a7</string>
+    <string name="facebook_app_id"></string>
+    <string name="fb_login_protocol_scheme"></string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY"></string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET"></string>
+    <string name="google_places_api_key"></string>
+    <string name="microsoft_face_url"></string>
+    <string name="microsoft_face_api_key"></string>
+    <string name="themoviedb_api_key"></string>
     <string name="title_activity_suggestions">SuggestionsActivity</string>
     <string name="activity_suggestions_title">Suggested Movies</string>
     <string name="activity_suggestions_appbar_context">Here are some suggestions based on your mood</string>
