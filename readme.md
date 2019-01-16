@@ -22,18 +22,7 @@ First clone the project to your local machine
 ```
 git clone https://bitbucket.org/martacarvalho/project-facebook-emotions
 ```
-#### 2 - Register a Facebook Application
-Obtain Facebook credentials registering a facebook app that allows user´s to login with Facebook and retrieve their own post´s.
-
-To register an app go to [Facebook Developers page](https://developers.facebook.com/apps/) copy your facebook app credentials and paste them on the folder that contains all strings in android application.
-
-Open /app/src/main/res/values/strings.xml file and paste your facebook app ID in those two strings:
-```
-(...)
-<string name="facebook_app_id">{APP_ID}</string>
-<string name="fb_login_protocol_scheme">fb{APP_ID}</string>
-```
-#### 3 - Register a Twitter Application
+#### 2 - Register a Twitter Application
 In order to allow users to authenticate through Twitter its mandatory to register a [Twitter App](https://developer.twitter.com/).
 
 Then access your app settings to retrieve both consumer key and consumer secret. Those keys will be used to allow your application to login and access user personal information.
@@ -44,7 +33,7 @@ Open /app/src/main/res/values/strings.xml file and fill your keys in those two s
 <string name="com.twitter.sdk.android.CONSUMER_KEY">{CONSUMER_KEY}</string>
 <string name="com.twitter.sdk.android.CONSUMER_SECRET">{CONSUMER_SECRET}</string>
 ```
-#### 4 - Obtain a Google Maps API Key
+#### 3 - Obtain a Google Maps API Key
 You can obtain a Google Maps API Key [here](https://developers.google.com/maps/documentation/android-sdk/signup).
 You will be asked to:
 * Pick one or more products
@@ -56,7 +45,7 @@ Open /app/src/main/res/values/strings.xml file and fill your Google API Keyx:
 (...)
 <string name="google_places_api_key">{GOOGLE_API_KEY}</string>
 ```
-#### 5 - Obtain Microsoft Face API Key
+#### 4 - Obtain Microsoft Face API Key
 First you need to create an account on [Microsoft Portal](https://portal.azure.com).
 In your portal click on create a resource on the left sidebar panel and then select AI + Machine Learning and finally choose the Face API and create the resource.
 Then access the resource settings and grab both microsoft face url and microsoft face api key.
@@ -67,7 +56,7 @@ Open /app/src/main/res/values/strings.xml file and fill both Keys:
  <string name="microsoft_face_url">{MICROSOFT_FACE_URL}</string>
  <string name="microsoft_face_api_key">{MICROSOFT_FACE_API_KEY}</string>
 ```
-#### 6 - Obtain The MovieDB API Key
+#### 5 - Obtain The MovieDB API Key
 Finally register an account on [The MovieDB Developers](https://developers.themoviedb.org) and copy your API key.
 
 Open /app/src/main/res/values/strings.xml file and paste the key:
